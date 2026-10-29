@@ -157,7 +157,7 @@
         <nav id="ui-nav-mobile" class="hidden md:hidden bg-bgCard border-b border-border px-4 py-4 flex flex-col gap-4"></nav>
     </header>
 
-    <!-- Модальное окно бронирования -->
+    <!-- Модальное окно заявки -->
     <div id="booking-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center p-4">
         <div class="modal-overlay absolute inset-0" id="modal-overlay"></div>
         <div class="relative bg-bgCard border border-border rounded-2xl w-full max-w-md p-6 sm:p-8 shadow-2xl transform transition-all">
@@ -238,40 +238,7 @@
     </footer>
 
     <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
-
-        // Инициализация базы данных (упрощенная для заявок)
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'ggprime-app';
-        let db;
-
-        try {
-            const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {};
-            const app = initializeApp(firebaseConfig);
-            db = getFirestore(app);
-        } catch (e) {
-            console.warn("Firebase config not found, database features will be mocked.");
-        }
-
-        const GOOGLE_SHEETS_WEBHOOK_URL = "https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec"; 
-        
-        async function syncToGoogleSheets(action, payload) {
-            console.log(`[Google Sheets Sync] Действие: ${action}`, payload);
-            // Для реальной интеграции с Google Sheets раскомментируйте код ниже:
-            /*
-            try {
-                await fetch(GOOGLE_SHEETS_WEBHOOK_URL, {
-                    method: 'POST',
-                    mode: 'no-cors',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ action, ...payload })
-                });
-            } catch (e) {
-                console.error("Webhook error", e);
-            }
-            */
-        }
-
+        // Конфигурация сайта
         const siteConfig = {
             gymName: "GGPRIME",
             navLinks: [
@@ -303,6 +270,7 @@
             }
         };
 
+        // Инициализация интерфейса
         document.addEventListener("DOMContentLoaded", () => {
             document.title = siteConfig.gymName;
             document.getElementById("ui-logo").textContent = siteConfig.gymName;
@@ -352,6 +320,7 @@
                 <div class="flex items-center"><span class="text-2xl mr-4">⏱</span><p>${siteConfig.contact.hours}</p></div>
             `;
 
+            // Мобильное меню
             const menuBtn = document.getElementById("mobile-menu-btn");
             menuBtn.addEventListener("click", () => {
                 navMobile.classList.toggle("hidden");
@@ -360,6 +329,7 @@
                 if(e.target.tagName === 'A') navMobile.classList.add("hidden");
             });
 
+            // Переключатель тем
             const themeToggle = document.getElementById("theme-toggle");
             const htmlTag = document.documentElement;
             const iconMoon = document.getElementById("theme-icon-moon");
@@ -386,6 +356,7 @@
                 }
             }
 
+            // Анимации при скролле
             const revealElements = document.querySelectorAll(".reveal");
             const revealObserver = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
@@ -399,6 +370,7 @@
             revealElements.forEach(el => revealObserver.observe(el));
         });
 
+        // Управление модальным окном
         const modal = document.getElementById("booking-modal");
         
         window.openModal = function() {
@@ -414,6 +386,13 @@
         document.getElementById("close-modal").addEventListener("click", closeModal);
         document.getElementById("modal-overlay").addEventListener("click", closeModal);
         
+        // ==========================================
+        // ОТПРАВКА ДАННЫХ В GOOGLE ТАБЛИЦУ
+        // ==========================================
+        
+        // ВСТАВЬТЕ ВАШУ ССЫЛКУ ИЗ GOOGLE APPS SCRIPT СЮДА:
+        const GOOGLE_SHEETS_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbwhLQ3jjUQtsvXwxT2XWeGXSz97TXOLDP46yHzoyovlfTOGj7UGQYsO4UxIceYVKgk0/exec"; 
+
         document.getElementById("booking-form").addEventListener("submit", async (e) => {
             e.preventDefault();
             const submitBtn = e.target.querySelector('button[type="submit"]');
@@ -424,15 +403,20 @@
 
             const name = document.getElementById('booking-name').value;
             const phone = document.getElementById('booking-phone').value;
+            
+            const bookingData = { name, phone };
 
-            if (db) {
-                try {
-                    const bookingData = { name, phone, createdAt: new Date().toISOString() };
-                    await addDoc(collection(db, 'artifacts', appId, 'bookings'), bookingData);
-                    syncToGoogleSheets("newLead", bookingData);
-                } catch (error) {
-                    console.error("Error saving lead to DB:", error);
-                }
+            try {
+                // Отправляем POST запрос в Google Apps Script
+                await fetch(GOOGLE_SHEETS_WEBHOOK_URL, {
+                    method: 'POST',
+                    mode: 'no-cors', // Важно для предотвращения блокировки браузером (CORS)
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(bookingData)
+                });
+                console.log("Успешно отправлено в таблицу!");
+            } catch (error) {
+                console.error("Ошибка при отправке:", error);
             }
             
             submitBtn.textContent = "✓ Заявка отправлена!";
@@ -448,7 +432,6 @@
                 submitBtn.classList.add("bg-primary", "hover:bg-primaryHover");
             }, 2000);
         });
-
     </script>
 </body>
 </html>
