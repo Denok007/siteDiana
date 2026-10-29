@@ -103,30 +103,6 @@
             transform: translateY(0);
         }
 
-        /* Gallery CSS Scroll-Snap */
-        .gallery-container {
-            display: flex;
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            scroll-behavior: smooth;
-            -webkit-overflow-scrolling: touch;
-            scrollbar-width: none;
-        }
-        .gallery-container::-webkit-scrollbar {
-            display: none;
-        }
-        .gallery-item {
-            flex: 0 0 85%;
-            scroll-snap-align: center;
-            margin-right: 1rem;
-        }
-        @media (min-width: 768px) {
-            .gallery-item { flex: 0 0 45%; }
-        }
-        @media (min-width: 1024px) {
-            .gallery-item { flex: 0 0 30%; }
-        }
-
         /* FAQ Details/Summary */
         details {
             background-color: var(--color-bg-card);
@@ -214,14 +190,6 @@
             </div>
         </section>
 
-        <!-- Gallery Section -->
-        <section id="gallery" class="py-20 bg-bgMain border-y border-border">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-10 reveal">
-                <h2 class="text-3xl md:text-4xl font-bold uppercase text-textMain">Галерея пространств</h2>
-            </div>
-            <div class="gallery-container pl-4 sm:pl-6 lg:pl-8 pb-8 reveal" id="ui-gallery-grid"></div>
-        </section>
-
         <!-- Trainers Section -->
         <section id="trainers" class="py-20 bg-bgCard border-b border-border">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -307,7 +275,6 @@
         const siteConfig = {
             gymName: "GGPRIME",
             navLinks: [
-                { label: "Галерея", url: "#gallery" },
                 { label: "Команда", url: "#trainers" },
                 { label: "Вопросы", url: "#faq" },
                 { label: "Контакты", url: "#contact" }
@@ -317,12 +284,6 @@
                 subtitle: "Многофункциональное пространство для спорта, развития и новых достижений.",
                 ctaText: "Оставить заявку"
             },
-            gallery: [
-                "https://placehold.co/800x600/1F2833/E63946?text=Тренировочная+Зона",
-                "https://placehold.co/800x600/1F2833/FFFFFF?text=Оборудование",
-                "https://placehold.co/800x600/1F2833/9CA3AF?text=Зона+Отдыха",
-                "https://placehold.co/800x600/1F2833/E63946?text=Раздевалки"
-            ],
             trainers: [
                 { name: "Алекс", role: "Главный Тренер", img: "https://placehold.co/300x400/1F2833/FFFFFF?text=Alex" },
                 { name: "Мария", role: "Пилатес & Стретчинг", img: "https://placehold.co/300x400/1F2833/FFFFFF?text=Maria" },
@@ -359,15 +320,6 @@
             document.getElementById("ui-hero-title").innerHTML = siteConfig.hero.title;
             document.getElementById("ui-hero-subtitle").innerHTML = siteConfig.hero.subtitle;
             document.getElementById("ui-hero-btn").textContent = siteConfig.hero.ctaText;
-
-            const galleryGrid = document.getElementById("ui-gallery-grid");
-            siteConfig.gallery.forEach(img => {
-                galleryGrid.innerHTML += `
-                    <div class="gallery-item rounded-2xl overflow-hidden shadow-lg border border-border">
-                        <img src="${img}" alt="Gallery image" class="w-full h-64 object-cover hover:scale-105 transition-transform duration-500">
-                    </div>
-                `;
-            });
 
             const trainersGrid = document.getElementById("ui-trainers-grid");
             siteConfig.trainers.forEach(trainer => {
