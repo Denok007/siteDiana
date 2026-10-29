@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#E63946">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Sports Hall Template</title>
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="data:application/manifest+json;charset=utf-8,%7B%22name%22%3A%22Sports%20Hall%22%2C%22short_name%22%3A%22SportsHall%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%230B0C10%22%2C%22theme_color%22%3A%22%23E63946%22%7D">
+    <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxOTIiIGhlaWdodD0iMTkyIiB2aWV3Qm94PSIwIDAgMTkyIDE5MiI+PHJlY3Qgd2lkdGg9IjE5MiIgaGVpZ2h0PSIxOTIiIGZpbGw9IiNFNjM5NDYiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZmlsbD0id2hpdGUiIGZvbnQtc2l6ZT0iMjRweCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkdHPC90ZXh0Pjwvc3ZnPg==">
+
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Настройка Tailwind для связи с CSS переменными -->
+    <script>
+        tailwind.config = {
+            darkMode: ['class', '[data-theme="dark"]'],
+            theme: {
+                extend: {
+                    colors: {
+                        primary: 'var(--color-primary)',
+                        primaryHover: 'var(--color-primary-hover)',
+                        bgMain: 'var(--color-bg-main)',
+                        bgCard: 'var(--color-bg-card)',
+                        textMain: 'var(--color-text-main)',
+                        textMuted: 'var(--color-text-muted)',
+                        border: 'var(--color-border)',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        logo: ['Torq', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- ПОДКЛЮЧЕНИЕ НАШЕГО ВНЕШНЕГО CSS ФАЙЛА -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="font-sans antialiased overflow-x-hidden">
+
+    <!-- Шапка -->
+    <header class="fixed w-full top-0 z-50 bg-bgMain/90 backdrop-blur-md border-b border-border transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="#" class="font-logo text-3xl font-bold text-primary tracking-tight" id="ui-logo"></a>
+            
+            <div class="flex items-center gap-6">
+                <!-- Desktop Nav -->
+                <nav class="hidden md:flex gap-6 text-sm font-medium" id="ui-nav-desktop"></nav>
+                
+                <!-- Theme Toggle -->
+                <button id="theme-toggle" class="p-2 rounded-full hover:bg-bgCard transition-colors" aria-label="Toggle Theme">
+                    <svg id="theme-icon-moon" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                    <svg id="theme-icon-sun" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4.22 2.366a1 1 0 011.415 0l.707.707a1 1 0 01-1.414 1.414l-.707-.707a1 1 0 010-1.414zM18 10a1 1 0 01-1 1h-1a1 1 0 110-2h1a1 1 0 011 1zm-2.366 4.22a1 1 0 010 1.415l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.415 0zM10 16a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zm-4.22-2.366a1 1 0 01-1.415 0l-.707-.707a1 1 0 011.414-1.414l.707.707a1 1 0 010 1.414zM4 10a1 1 0 01-1 1H2a1 1 0 110-2h1a1 1 0 011 1zm2.366-4.22a1 1 0 010-1.415l.707-.707a1 1 0 011.414 1.414l-.707.707a1 1 0 01-1.415 0zM10 5a5 5 0 100 10 5 5 0 000-10z" clip-rule="evenodd"></path></svg>
+                </button>
+
+                <!-- Profile Button -->
+                <button onclick="openProfileModal()" class="p-2 rounded-full hover:bg-bgCard transition-colors text-primary" aria-label="Profile">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+                </button>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden p-2 text-textMain">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Nav -->
+        <nav id="ui-nav-mobile" class="hidden md:hidden bg-bgCard border-b border-border px-4 py-4 flex flex-col gap-4"></nav>
+    </header>
+
+    <!-- Модальное окно бронирования -->
+    <div id="booking-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center p-4">
+        <div class="modal-overlay absolute inset-0" id="modal-overlay"></div>
+        <div class="relative bg-bgCard border border-border rounded-2xl w-full max-w-md p-6 sm:p-8 shadow-2xl transform transition-all">
+            <button id="close-modal" class="absolute top-4 right-4 text-textMuted hover:text-primary transition-colors">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            <h3 class="text-2xl font-bold mb-6 text-textMain">Забронировать зал</h3>
+            <form id="booking-form" class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-textMuted mb-1">Имя</label>
+                    <input type="text" id="booking-name" required class="w-full bg-bgMain border border-border rounded-lg px-4 py-3 text-textMain focus:outline-none focus:border-primary transition-colors">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-textMuted mb-1">Телефон</label>
+                    <input type="tel" id="booking-phone" required class="w-full bg-bgMain border border-border rounded-lg px-4 py-3 text-textMain focus:outline-none focus:border-primary transition-colors">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-textMuted mb-1">Выберите зал</label>
+                    <select id="modal-hall-select" class="w-full bg-bgMain border border-border rounded-lg px-4 py-3 text-textMain focus:outline-none focus:border-primary transition-colors appearance-none"></select>
+                </div>
+                <button type="submit" class="w-full bg-primary hover:bg-primaryHover text-white font-bold py-3 rounded-lg mt-4 transition-colors">Отправить заявку</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Модальное окно профиля / регистрации -->
+    <div id="profile-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center p-4">
+        <div class="modal-overlay absolute inset-0" onclick="closeProfileModal()"></div>
+        <div class="relative bg-bgCard border border-border rounded-2xl w-full max-w-md p-6 sm:p-8 shadow-2xl transform transition-all">
+            <button onclick="closeProfileModal()" class="absolute top-4 right-4 text-textMuted hover:text-primary transition-colors">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            <h3 class="text-2xl font-bold mb-2 text-textMain">Личный кабинет</h3>
+            <p class="text-textMuted text-sm mb-6">Заполните профиль для быстрой записи</p>
+            
+            <div id="profile-stats" class="grid grid-cols-3 gap-2 sm:gap-4 mb-6 text-center hidden">
+                <div class="bg-bgMain p-2 sm:p-3 rounded-lg border border-border">
+                    <div class="text-[10px] sm:text-xs text-textMuted mb-1">Баланс</div>
+                    <div class="text-sm sm:text-lg font-bold text-primary" id="stat-balance">0 €</div>
+                    <button type="button" onclick="topUpBalance()" class="text-[10px] text-white bg-primary rounded px-2 py-1 mt-1 hover:bg-primaryHover">Пополнить</button>
+                </div>
+                <div class="bg-bgMain p-2 sm:p-3 rounded-lg border border-border overflow-hidden">
+                    <div class="text-[10px] sm:text-xs text-textMuted mb-1">Абонемент</div>
+                    <div class="text-xs sm:text-sm font-bold text-textMain truncate" id="stat-pass">Нет</div>
+                </div>
+                <div class="bg-bgMain p-2 sm:p-3 rounded-lg border border-border">
+                    <div class="text-[10px] sm:text-xs text-textMuted mb-1">Остаток</div>
+                    <div class="text-sm sm:text-lg font-bold text-primary" id="stat-workouts">0</div>
+                </div>
+            </div>
+
+            <form id="profile-form" class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-textMuted mb-1">Имя</label>
+                    <input type="text" id="profile-name" required class="w-full bg-bgMain border border-border rounded-lg px-4 py-3 text-textMain focus:outline-none focus:border-primary transition-colors">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-textMuted mb-1">Email</label>
+                    <input type="email" id="profile-email" required class="w-full bg-bgMain border border-border rounded-lg px-4 py-3 text-textMain focus:outline-none focus:border-primary transition-colors">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-textMuted mb-1">Телефон</label>
+                    <div class="flex gap-2">
+                        <input type="tel" id="profile-phone" class="w-full bg-bgMain border border-border rounded-lg px-4 py-3 text-textMain focus:outline-none focus:border-primary transition-colors">
+                        <button type="button" id="btn-send-sms" class="bg-bgCard border border-primary text-primary px-4 py-2 rounded-lg hover:bg-primary hover:text-white transition-colors">SMS</button>
+                    </div>
+                </div>
+                <!-- Блок ввода SMS -->
+                <div id="sms-code-group" class="hidden mt-2 p-3 bg-bgMain rounded-lg border border-border">
+                    <label class="block text-xs font-medium text-textMuted mb-1">Код из SMS (для теста: 1234)</label>
+                    <div class="flex gap-2">
+                        <input type="text" id="sms-code" maxlength="4" placeholder="0000" class="w-full bg-bgCard border border-border rounded-lg px-3 py-2 text-textMain focus:outline-none focus:border-primary">
+                        <button type="button" id="btn-verify-sms" class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primaryHover transition-colors">OK</button>
+                    </div>
+                    <p id="sms-status" class="text-xs mt-2 hidden"></p>
+                </div>
+                <button type="submit" class="w-full bg-primary hover:bg-primaryHover text-white font-bold py-3 rounded-lg mt-4 transition-colors">Сохранить данные</button>
+            </form>
+        </div>
+    </div>
+
+    <main class="pt-20">
+        <!-- Hero Section -->
+        <section id="home" class="relative min-h-[85vh] flex items-center justify-center text-center px-4 overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-b from-primary/5 to-bgMain z-0"></div>
+            <div class="relative z-10 max-w-3xl reveal">
+                <h1 id="ui-hero-title" class="text-5xl md:text-7xl font-bold mb-6 uppercase tracking-tight"></h1>
+                <p id="ui-hero-subtitle" class="text-lg md:text-xl text-textMuted mb-10 max-w-2xl mx-auto"></p>
+                <button onclick="openModal()" id="ui-hero-btn" class="bg-primary hover:bg-primaryHover text-white px-8 py-4 rounded-lg font-bold text-lg uppercase tracking-wide transition-transform hover:-translate-y-1 shadow-lg shadow-primary/30"></button>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section id="gallery" class="py-20 bg-bgMain">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-10 reveal">
+                <h2 class="text-3xl md:text-4xl font-bold uppercase text-textMain">Галерея пространств</h2>
+            </div>
+            <div class="gallery-container pl-4 sm:pl-6 lg:pl-8 pb-8 reveal" id="ui-gallery-grid"></div>
+        </section>
+
+        <!-- Halls Grid -->
+        <section id="halls" class="py-20 bg-bgCard border-y border-border">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16 reveal">
+                    <h2 class="text-3xl md:text-4xl font-bold uppercase text-textMain" id="ui-halls-title"></h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="ui-halls-grid"></div>
+            </div>
+        </section>
+
+        <!-- Timetable Section -->
+        <section id="timetable" class="py-20 bg-bgMain">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16 reveal">
+                    <h2 class="text-3xl md:text-4xl font-bold uppercase text-textMain">Расписание групповых</h2>
+                </div>
+                <div class="overflow-x-auto border border-border rounded-xl reveal bg-bgCard">
+                    <table class="w-full text-left border-collapse min-w-[600px]">
+                        <thead>
+                            <tr class="bg-bgMain text-textMuted uppercase text-sm border-b border-border" id="ui-timetable-head"></tr>
+                        </thead>
+                        <tbody id="ui-timetable-body" class="divide-y divide-border"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Trainers Section -->
+        <section id="trainers" class="py-20 bg-bgCard border-y border-border">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16 reveal">
+                    <h2 class="text-3xl md:text-4xl font-bold uppercase text-textMain">Наши Тренеры</h2>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8" id="ui-trainers-grid"></div>
+            </div>
+        </section>
+
+        <!-- Pricing Section -->
+        <section id="pricing" class="py-20 bg-bgMain">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16 reveal">
+                    <h2 class="text-3xl md:text-4xl font-bold uppercase text-textMain">Абонементы</h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center" id="ui-pricing-grid"></div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="py-20 bg-bgCard border-y border-border">
+            <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12 reveal">
+                    <h2 class="text-3xl md:text-4xl font-bold uppercase text-textMain">Частые вопросы</h2>
+                </div>
+                <div class="space-y-4" id="ui-faq-list"></div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 bg-bgMain">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 reveal">
+                    <div>
+                        <h2 class="text-3xl md:text-4xl font-bold uppercase text-textMain mb-8">Контакты</h2>
+                        <div class="space-y-6 text-lg" id="ui-contact-info"></div>
+                        <button onclick="openModal()" class="mt-8 bg-transparent border-2 border-primary text-primary hover:bg-primary hover:text-white px-8 py-3 rounded-lg font-bold uppercase transition-colors">Связаться с нами</button>
+                    </div>
+                    <div class="h-[400px] rounded-xl overflow-hidden border border-border shadow-lg">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d155959.08378604323!2d4.763878149814467!3d52.35473214532585!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c63fb5949a7755%3A0x6600fd4cb7c0af8d!2sAmsterdam%2C%20Netherlands!5e0!3m2!1sen!2s!4v1700000000000!5m2!1sen!2s" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-bgCard border-t border-border py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <div class="font-logo text-2xl text-primary font-bold" id="ui-footer-logo"></div>
+                <div class="text-textMuted text-sm" id="ui-copyright"></div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ПОДКЛЮЧЕНИЕ НАШЕГО ВНЕШНЕГО JS ФАЙЛА -->
+    <script type="module" src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+/* Шрифт для логотипа */
+@font-face {
+    font-family: 'Torq';
+    src: url('https://fonts.cdnfonts.com/s/72223/Torq.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* ==========================================================================
+   CSS ПЕРЕМЕННЫЕ (Светлая и Темная темы)
+   ========================================================================== */
+:root[data-theme="dark"] {
+    --color-primary: #E63946;
+    --color-primary-hover: #D62828;
+    --color-bg-main: #0B0C10;
+    --color-bg-card: #1F2833;
+    --color-text-main: #FFFFFF;
+    --color-text-muted: #9CA3AF;
+    --color-border: rgba(255, 255, 255, 0.1);
+}
+
+:root[data-theme="light"] {
+    --color-primary: #E63946;
+    --color-primary-hover: #D62828;
+    --color-bg-main: #F9FAFB;
+    --color-bg-card: #FFFFFF;
+    --color-text-main: #111827;
+    --color-text-muted: #4B5563;
+    --color-border: rgba(0, 0, 0, 0.1);
+}
+
+/* Базовые стили и PWA Safe Areas */
+body {
+    background-color: var(--color-bg-main);
+    color: var(--color-text-main);
+    transition: background-color 0.3s ease, color 0.3s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+
+@supports (padding: max(0px)) {
+    body {
+        padding-left: env(safe-area-inset-left);
+        padding-right: env(safe-area-inset-right);
+    }
+}
+
+/* Scroll Reveal Анимации */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+}
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Gallery CSS Scroll-Snap */
+.gallery-container {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+}
+.gallery-container::-webkit-scrollbar {
+    display: none;
+}
+.gallery-item {
+    flex: 0 0 85%;
+    scroll-snap-align: center;
+    margin-right: 1rem;
+}
+@media (min-width: 768px) {
+    .gallery-item { flex: 0 0 45%; }
+}
+@media (min-width: 1024px) {
+    .gallery-item { flex: 0 0 30%; }
+}
+
+/* FAQ Details/Summary */
+details {
+    background-color: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+}
+summary {
+    list-style: none;
+    cursor: pointer;
+}
+summary::-webkit-details-marker {
+    display: none;
+}
+details[open] summary ~ * {
+    animation: fadeIn 0.3s ease-in-out;
+}
+@keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(-10px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Modal Overlay */
+.modal-overlay {
+    background-color: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(5px);
+}
