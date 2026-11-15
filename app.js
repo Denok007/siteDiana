@@ -1,77 +1,89 @@
 // ==========================================================================
-// GGPRIME - Автоматизированная система управления клубом, ролями и расписанием
+// GGPRIME JUDO - Система управления клубом дзюдо (Минск)
+// Личный кабинет, баланс в BYN, QR-пропуск и списание за тренировки
 // ==========================================================================
 
 export const siteConfig = {
-    gymName: "GGPRIME",
+    gymName: "GGPRIME JUDO",
     navLinks: [
         { label: "Главная", url: "#home" },
         { label: "Расписание", url: "#schedule" },
-        { label: "Команда", url: "#trainers" },
+        { label: "Тренеры", url: "#trainers" },
         { label: "Вопросы", url: "#faq" },
         { label: "Контакты", url: "#contact" }
     ],
     hero: {
-        title: "Твоя арена.<br>Твои правила.",
-        subtitle: "Многофункциональное пространство для спорта, тренировок и новых рекордов. Умная запись онлайн и лучшие наставники.",
-        ctaText: "Оставить заявку"
+        title: "Путь гибкости.<br>Твоя победа.",
+        subtitle: "Спортивный клуб дзюдо в Минске. Подготовка детей от 4 лет, юношей и взрослых. Олимпийские татами, сертифицированные тренеры и удобная электронная система учета через QR-код.",
+        ctaText: "Пробное занятие"
     },
     trainers: [
-        { name: "Алекс", role: "Главный Тренер / Кроссфит", img: "https://images.unsplash.com/photo-1567013127542-490d757e51fc?w=600&auto=format&fit=crop&q=80" },
-        { name: "Мария", role: "Пилатес & Хатха-Йога", img: "https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&auto=format&fit=crop&q=80" },
-        { name: "Джон", role: "Бокс & Силовой тренинг", img: "https://images.unsplash.com/photo-1583473848882-f9a5bc7fd2ee?w=600&auto=format&fit=crop&q=80" },
-        { name: "Сара", role: "Кардио & Функциональный тренинг", img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=600&auto=format&fit=crop&q=80" }
+        { name: "Алексей Новиков", role: "Главный тренер • Черный пояс 3 дан, Мастер спорта РБ", img: "https://images.unsplash.com/photo-1567013127542-490d757e51fc?w=600&auto=format&fit=crop&q=80" },
+        { name: "Мария Ковалева", role: "Детский тренер (4-8 лет) • Мастер спорта", img: "https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&auto=format&fit=crop&q=80" },
+        { name: "Денис Богданов", role: "Старший тренер • Черный пояс 2 дан", img: "https://images.unsplash.com/photo-1583473848882-f9a5bc7fd2ee?w=600&auto=format&fit=crop&q=80" },
+        { name: "Светлана Русак", role: "ОФП & Акробатика для дзюдоистов", img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=600&auto=format&fit=crop&q=80" }
     ],
     faq: [
-        { q: "Как записаться на тренировку?", a: "Вы можете зарегистрироваться на сайте, выбрать удобное время в интерактивном расписании и записаться в один клик!" },
-        { q: "Кто может составлять расписание?", a: "Составлять и редактировать расписание могут только сертифицированные тренеры клуба и владелец." },
-        { q: "Что нужно взять на первую тренировку?", a: "Удобную спортивную форму, чистую сменную обувь и бутылку воды. Полотенца выдаются на ресепшене." },
-        { q: "Как отменить запись на занятие?", a: "Отменить запись можно в Личном кабинете в разделе «Мои записи». Место автоматически станет доступно другим участникам." }
+        { q: "Что нужно взять на первую тренировку по дзюдо?", a: "Для первого раза подойдет удобная спортивная форма: спортивные штаны без замков и футболка (или дзюдоги/кимоно, если уже есть), сменные сланцы для прохода до татами. На самом татами занимаемся босиком." },
+        { q: "Как работает оплата тренировок через QR-код?", a: "Никаких бумажных абонементов! Вы пополняете личный счёт в кабинете на любую сумму. Приходя в клуб, показываете персональный QR-код тренеру — с вашего баланса списывается стоимость разовой тренировки (15 BYN)." },
+        { q: "С какого возраста можно отдавать ребенка на дзюдо?", a: "В подготовительные группы ОФП с элементами самостраховки и акробатики принимаем детей с 4 лет. В спортивные группы дзюдо — с 7 лет." },
+        { q: "Есть ли группы для взрослых новичков?", a: "Да! У нас есть вечерняя группа для взрослых, кто начинает с нуля. Занятия помогают поставить технику, улучшить гибкость, выносливость и снять стресс после рабочего дня." }
     ],
     contact: {
-        address: "Stationplein 15, 1012 AB Amsterdam",
-        phone: "+31 20 123 4567",
-        email: "hello@ggprime.com",
-        hours: "Пн - Вс: 06:00 - 23:00"
+        address: "г. Минск, пр-т Победителей, 20 (Дворец спорта)",
+        phone: "+375 (29) 123-45-67",
+        email: "judo@ggprime.by",
+        hours: "Пн - Вс: 08:00 - 22:00"
     }
 };
 
 export const GOOGLE_SHEETS_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbwhLQ3jjUQtsvXwxT2XWeGXSz97TXOLDP46yHzoyovlfTOGj7UGQYsO4UxIceYVKgk0/exec";
+export const WORKOUT_PRICE_BYN = 15; // Стоимость разовой тренировки
 
 // ==========================================================================
-// БАЗА ДАННЫХ И СОСТОЯНИЕ (Хранится в LocalStorage)
+// БАЗА ДАННЫХ КЛУБА ДЗЮДО (Хранится в LocalStorage)
 // ==========================================================================
 
 const DEFAULT_USERS = [
     {
         id: "usr-owner-1",
         name: "Диана",
-        email: "owner@ggprime.ru",
-        phone: "+7 (999) 000-00-01",
-        role: "owner", // Роли: owner | trainer | client
+        email: "owner@ggprime.by",
+        phone: "+375 (29) 111-00-00",
+        role: "owner", // owner | trainer | client
         password: "123",
-        passStatus: "VIP Владелец",
-        workoutsLeft: 999
+        balance: 150,
+        code: "JD-0001",
+        transactions: [
+            { id: 1, type: "topup", amount: 150, title: "Пополнение баланса (Владелец)", date: "15.11.2026, 09:00" }
+        ]
     },
     {
         id: "usr-trainer-1",
-        name: "Алекс (Тренер)",
-        email: "alex@ggprime.ru",
-        phone: "+7 (999) 111-22-33",
+        name: "Алексей Новиков",
+        email: "alex@ggprime.by",
+        phone: "+375 (29) 222-33-44",
         role: "trainer",
         password: "123",
-        passStatus: "Тренер клуба",
-        workoutsLeft: 999
+        balance: 90,
+        code: "JD-0002",
+        transactions: [
+            { id: 2, type: "topup", amount: 90, title: "Пополнение баланса", date: "15.11.2026, 09:30" }
+        ]
     },
     {
         id: "usr-client-1",
-        name: "Мария Смирнова",
-        email: "maria@example.com",
-        phone: "+7 (999) 777-88-99",
+        name: "Денис",
+        email: "denis@mail.ru",
+        phone: "+375 (29) 777-88-99",
         role: "client",
         password: "123",
-        passStatus: "Pro (8 занятий)",
-        workoutsLeft: 8
+        balance: 45, // Хватает на 3 тренировки
+        code: "JD-7842",
+        transactions: [
+            { id: 3, type: "topup", amount: 60, title: "Пополнение счёта через ЕРИП/Карту", date: "14.11.2026, 18:20" },
+            { id: 4, type: "charge", amount: 15, title: "Тренировка: Дзюдо (Взрослые) по QR-коду", date: "14.11.2026, 20:00" }
+        ]
     }
 ];
 
@@ -79,118 +91,154 @@ const DEFAULT_WORKOUTS = [
     {
         id: "w-1",
         day: "Пн",
-        time: "10:00",
+        time: "17:00",
         duration: 60,
-        title: "CrossFit: Базовый WOD",
-        hall: "CrossFit Зона",
+        title: "Дзюдо: Дети (4-7 лет)",
+        hall: "Татами №2 (Детское додзё)",
         trainerId: "usr-trainer-1",
-        trainerName: "Алекс",
-        capacity: 10,
-        enrolled: ["usr-client-1"]
+        trainerName: "Мария Ковалева",
+        capacity: 12,
+        enrolled: []
     },
     {
         id: "w-2",
         day: "Пн",
         time: "18:30",
         duration: 90,
-        title: "Бокс: Техника и спарринг",
-        hall: "Боксерский Ринг",
+        title: "Дзюдо: Юноши (8-14 лет)",
+        hall: "Татами №1 (Олимпийское)",
         trainerId: "usr-trainer-1",
-        trainerName: "Алекс",
-        capacity: 12,
-        enrolled: []
+        trainerName: "Алексей Новиков",
+        capacity: 16,
+        enrolled: ["usr-client-1"]
     },
     {
         id: "w-3",
-        day: "Вт",
-        time: "09:00",
-        duration: 60,
-        title: "Хатха-Йога & Релакс",
-        hall: "Студия Йоги",
+        day: "Пн",
+        time: "20:00",
+        duration: 90,
+        title: "Дзюдо: Взрослые (новички)",
+        hall: "Татами №1 (Олимпийское)",
         trainerId: "usr-trainer-1",
-        trainerName: "Мария",
-        capacity: 8,
+        trainerName: "Денис Богданов",
+        capacity: 16,
         enrolled: []
     },
     {
         id: "w-4",
         day: "Вт",
-        time: "19:00",
-        duration: 90,
-        title: "MMA: Борьба и грэпплинг",
-        hall: "Октагон MMA",
+        time: "18:00",
+        duration: 60,
+        title: "ОФП & Акробатика для дзюдо",
+        hall: "Зона ОФП и кросс-тренинга",
         trainerId: "usr-trainer-1",
-        trainerName: "Алекс",
-        capacity: 10,
+        trainerName: "Светлана Русак",
+        capacity: 14,
         enrolled: []
     },
     {
         id: "w-5",
-        day: "Ср",
-        time: "12:00",
-        duration: 60,
-        title: "Пилатес для осанки",
-        hall: "Студия Йоги",
+        day: "Вт",
+        time: "19:30",
+        duration: 90,
+        title: "Рандори (Учебные спарринги)",
+        hall: "Татами №1 (Олимпийское)",
         trainerId: "usr-trainer-1",
-        trainerName: "Мария",
-        capacity: 10,
-        enrolled: ["usr-client-1"]
+        trainerName: "Алексей Новиков",
+        capacity: 18,
+        enrolled: []
     },
     {
         id: "w-6",
         day: "Ср",
-        time: "18:00",
+        time: "17:00",
         duration: 60,
-        title: "Силовой Кроссфит",
-        hall: "CrossFit Зона",
+        title: "Дзюдо: Дети (4-7 лет)",
+        hall: "Татами №2 (Детское додзё)",
         trainerId: "usr-trainer-1",
-        trainerName: "Алекс",
+        trainerName: "Мария Ковалева",
         capacity: 12,
         enrolled: []
     },
     {
         id: "w-7",
-        day: "Чт",
-        time: "19:00",
-        duration: 75,
-        title: "Бокс: Работа на грушах",
-        hall: "Боксерский Ринг",
+        day: "Ср",
+        time: "18:30",
+        duration: 90,
+        title: "Дзюдо: Юноши (8-14 лет)",
+        hall: "Татами №1 (Олимпийское)",
         trainerId: "usr-trainer-1",
-        trainerName: "Алекс",
-        capacity: 10,
+        trainerName: "Алексей Новиков",
+        capacity: 16,
         enrolled: []
     },
     {
         id: "w-8",
-        day: "Пт",
-        time: "18:00",
-        duration: 60,
-        title: "Функциональный интенсив",
-        hall: "Тренажерный Зал",
+        day: "Ср",
+        time: "20:00",
+        duration: 90,
+        title: "Дзюдо: Продвинутые / Мастера",
+        hall: "Татами №1 (Олимпийское)",
         trainerId: "usr-trainer-1",
-        trainerName: "Сара",
-        capacity: 15,
+        trainerName: "Денис Богданов",
+        capacity: 16,
         enrolled: []
     },
     {
         id: "w-9",
-        day: "Сб",
-        time: "11:00",
-        duration: 60,
-        title: "Стретчинг & Растяжка",
-        hall: "Студия Йоги",
+        day: "Чт",
+        time: "18:30",
+        duration: 90,
+        title: "Борьба в партере (Нэвадза)",
+        hall: "Татами №1 (Олимпийское)",
         trainerId: "usr-trainer-1",
-        trainerName: "Мария",
-        capacity: 12,
+        trainerName: "Алексей Новиков",
+        capacity: 16,
         enrolled: []
     },
     {
         id: "w-10",
+        day: "Пт",
+        time: "18:30",
+        duration: 90,
+        title: "Дзюдо: Юноши (8-14 лет)",
+        hall: "Татами №1 (Олимпийское)",
+        trainerId: "usr-trainer-1",
+        trainerName: "Алексей Новиков",
+        capacity: 16,
+        enrolled: []
+    },
+    {
+        id: "w-11",
+        day: "Пт",
+        time: "20:00",
+        duration: 90,
+        title: "Рандори & Бросковая техника",
+        hall: "Татами №1 (Олимпийское)",
+        trainerId: "usr-trainer-1",
+        trainerName: "Денис Богданов",
+        capacity: 18,
+        enrolled: []
+    },
+    {
+        id: "w-12",
+        day: "Сб",
+        time: "11:00",
+        duration: 90,
+        title: "Детский день борьбы (Рандори)",
+        hall: "Татами №1 (Олимпийское)",
+        trainerId: "usr-trainer-1",
+        trainerName: "Мария Ковалева",
+        capacity: 20,
+        enrolled: []
+    },
+    {
+        id: "w-13",
         day: "Вс",
         time: "12:00",
         duration: 120,
-        title: "Открытый ковер / Свободная арена",
-        hall: "CrossFit Зона",
+        title: "Открытое додзё / Самоподготовка",
+        hall: "Татами №1 (Олимпийское)",
         trainerId: "usr-trainer-1",
         trainerName: "Дежурный тренер",
         capacity: 20,
@@ -198,12 +246,12 @@ const DEFAULT_WORKOUTS = [
     }
 ];
 
-class AppStore {
+class JudoClubStore {
     constructor() {
-        this.users = JSON.parse(localStorage.getItem("ggprime_users")) || DEFAULT_USERS;
-        this.workouts = JSON.parse(localStorage.getItem("ggprime_workouts")) || DEFAULT_WORKOUTS;
+        this.users = JSON.parse(localStorage.getItem("ggprime_judo_users")) || DEFAULT_USERS;
+        this.workouts = JSON.parse(localStorage.getItem("ggprime_judo_workouts")) || DEFAULT_WORKOUTS;
         
-        const savedUserId = localStorage.getItem("ggprime_active_user_id");
+        const savedUserId = localStorage.getItem("ggprime_judo_active_user_id");
         this.currentUser = this.users.find(u => u.id === savedUserId) || null;
         
         this.activeDay = "Пн";
@@ -211,12 +259,12 @@ class AppStore {
     }
 
     save() {
-        localStorage.setItem("ggprime_users", JSON.stringify(this.users));
-        localStorage.setItem("ggprime_workouts", JSON.stringify(this.workouts));
+        localStorage.setItem("ggprime_judo_users", JSON.stringify(this.users));
+        localStorage.setItem("ggprime_judo_workouts", JSON.stringify(this.workouts));
         if (this.currentUser) {
-            localStorage.setItem("ggprime_active_user_id", this.currentUser.id);
+            localStorage.setItem("ggprime_judo_active_user_id", this.currentUser.id);
         } else {
-            localStorage.removeItem("ggprime_active_user_id");
+            localStorage.removeItem("ggprime_judo_active_user_id");
         }
     }
 
@@ -232,15 +280,19 @@ class AppStore {
         if (this.users.some(u => u.email.toLowerCase() === email.toLowerCase())) {
             throw new Error("Пользователь с таким email уже зарегистрирован");
         }
+        const randomCode = "JD-" + Math.floor(1000 + Math.random() * 9000);
         const newUser = {
             id: "usr-" + Date.now(),
             name,
             phone,
             email,
             password,
-            role: "client", // По умолчанию новый пользователь - Участник
-            passStatus: "Пробный (1 занятие)",
-            workoutsLeft: 1
+            role: "client",
+            balance: 15, // Дарим 15 BYN на первую пробную тренировку
+            code: randomCode,
+            transactions: [
+                { id: Date.now(), type: "topup", amount: 15, title: "Приветственный бонус (1 тренировка)", date: new Date().toLocaleString('ru-RU') }
+            ]
         };
         this.users.push(newUser);
         this.currentUser = newUser;
@@ -253,22 +305,67 @@ class AppStore {
         this.save();
     }
 
+    // Пополнение счета клиентом
+    topUp(amount) {
+        if (!this.currentUser) return;
+        const sum = parseFloat(amount);
+        if (isNaN(sum) || sum <= 0) return;
+
+        this.currentUser.balance = (this.currentUser.balance || 0) + sum;
+        if (!this.currentUser.transactions) this.currentUser.transactions = [];
+        
+        this.currentUser.transactions.unshift({
+            id: Date.now(),
+            type: "topup",
+            amount: sum,
+            title: "Пополнение баланса",
+            date: new Date().toLocaleString('ru-RU')
+        });
+
+        // Обновляем в общем списке
+        const u = this.users.find(x => x.id === this.currentUser.id);
+        if (u) {
+            u.balance = this.currentUser.balance;
+            u.transactions = this.currentUser.transactions;
+        }
+
+        this.save();
+    }
+
+    // Списание тренером при входе по QR-коду
+    chargeClientByTrainer(userId, amount = WORKOUT_PRICE_BYN) {
+        const target = this.users.find(u => u.id === userId);
+        if (!target) return { error: "Пользователь не найден" };
+
+        if ((target.balance || 0) < amount) {
+            return { error: `На балансе ${target.name} недостаточно средств (${target.balance || 0} BYN). Требуется ${amount} BYN.` };
+        }
+
+        target.balance -= amount;
+        if (!target.transactions) target.transactions = [];
+        target.transactions.unshift({
+            id: Date.now(),
+            type: "charge",
+            amount: amount,
+            title: "Списание за тренировку по дзюдо (QR-пропуск)",
+            date: new Date().toLocaleString('ru-RU')
+        });
+
+        if (this.currentUser && this.currentUser.id === target.id) {
+            this.currentUser.balance = target.balance;
+            this.currentUser.transactions = target.transactions;
+        }
+
+        this.save();
+        return { success: true, user: target, charged: amount };
+    }
+
     // Назначение роли тренера владельцем клуба
     setUserRole(userId, newRole) {
         const user = this.users.find(u => u.id === userId);
-        if (!user) return;
-        if (user.role === 'owner') return; // Роль владельца неизменна
+        if (!user || user.role === 'owner') return;
         
         user.role = newRole;
-        if (newRole === 'trainer') {
-            user.passStatus = "Тренер клуба";
-            user.workoutsLeft = 999;
-        } else if (newRole === 'client') {
-            user.passStatus = "Активен";
-            user.workoutsLeft = 8;
-        }
-
-        // Если обновляемый пользователь сейчас авторизован
         if (this.currentUser && this.currentUser.id === userId) {
             this.currentUser = user;
         }
@@ -309,60 +406,44 @@ class AppStore {
         }
 
         workout.enrolled.push(this.currentUser.id);
-        if (this.currentUser.role === 'client' && this.currentUser.workoutsLeft > 0) {
-            this.currentUser.workoutsLeft -= 1;
-        }
         this.save();
         return { success: true, workout };
     }
 
-    // Отмена записи
     cancelEnrollment(workoutId) {
         if (!this.currentUser) return;
         const workout = this.workouts.find(w => w.id === workoutId);
         if (!workout) return;
 
         workout.enrolled = workout.enrolled.filter(uid => uid !== this.currentUser.id);
-        if (this.currentUser.role === 'client') {
-            this.currentUser.workoutsLeft += 1;
-        }
         this.save();
     }
 }
 
-const store = new AppStore();
+const store = new JudoClubStore();
 
 // ==========================================================================
 // ИНИЦИАЛИЗАЦИЯ И РЕНДЕРИНГ ИНТЕРФЕЙСА
 // ==========================================================================
 
 document.addEventListener("DOMContentLoaded", () => {
-    // 1. Статический контент сайта
     renderStaticContent();
-
-    // 2. Блок авторизации в шапке
     renderAuthHeader();
-
-    // 3. Интерактивное расписание
     renderSchedule();
-
-    // 4. Настройка обработчиков форм и переключателей
     setupEventHandlers();
-
-    // 5. Тема и скролл-анимации
     setupThemeAndAnimations();
 });
 
 function renderStaticContent() {
-    document.title = siteConfig.gymName + " | Спортивная арена";
+    document.title = siteConfig.gymName + " | Клуб дзюдо в Минске";
     const logoEl = document.getElementById("ui-logo");
     const footerLogoEl = document.getElementById("ui-footer-logo");
     const copyrightEl = document.getElementById("ui-copyright");
 
-    if (logoEl) logoEl.textContent = siteConfig.gymName;
-    if (footerLogoEl) footerLogoEl.textContent = siteConfig.gymName;
+    if (logoEl) logoEl.textContent = siteConfig.gymName.split(' ')[0];
+    if (footerLogoEl) footerLogoEl.textContent = siteConfig.gymName.split(' ')[0];
     if (copyrightEl) {
-        copyrightEl.innerHTML = `&copy; ${new Date().getFullYear()} ${siteConfig.gymName}. Все права защищены.`;
+        copyrightEl.innerHTML = `&copy; ${new Date().getFullYear()} ${siteConfig.gymName}. Все права защищены. г. Минск.`;
     }
 
     const navDesktop = document.getElementById("ui-nav-desktop");
@@ -385,6 +466,7 @@ function renderStaticContent() {
     if (heroSubtitle) heroSubtitle.innerHTML = siteConfig.hero.subtitle;
     if (heroBtn) heroBtn.textContent = siteConfig.hero.ctaText;
 
+    // Тренеры по дзюдо
     const trainersGrid = document.getElementById("ui-trainers-grid");
     if (trainersGrid) {
         trainersGrid.innerHTML = "";
@@ -394,15 +476,16 @@ function renderStaticContent() {
                     <div class="relative overflow-hidden rounded-2xl mb-4 border border-border aspect-[3/4]">
                         <img src="${trainer.img}" alt="${trainer.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-4">
-                            <span class="text-xs text-primary font-semibold uppercase tracking-wider">${trainer.role}</span>
+                            <span class="text-xs text-primary font-bold uppercase tracking-wider">${trainer.role}</span>
                         </div>
                     </div>
-                    <h3 class="text-lg font-bold">${trainer.name}</h3>
+                    <h3 class="text-lg font-bold text-textMain">${trainer.name}</h3>
                 </div>
             `;
         });
     }
 
+    // FAQ
     const faqList = document.getElementById("ui-faq-list");
     if (faqList) {
         faqList.innerHTML = "";
@@ -419,6 +502,7 @@ function renderStaticContent() {
         });
     }
 
+    // Контакты (Минск)
     const contactInfo = document.getElementById("ui-contact-info");
     if (contactInfo) {
         contactInfo.innerHTML = `
@@ -453,7 +537,7 @@ function renderAuthHeader() {
             roleTitle = "👑 Владелец";
         } else if (u.role === "trainer") {
             roleBadgeClass = "bg-emerald-500/20 text-emerald-400 border border-emerald-500/30";
-            roleTitle = "🥊 Тренер";
+            roleTitle = "🥋 Тренер";
         }
 
         let ownerBtn = "";
@@ -468,8 +552,8 @@ function renderAuthHeader() {
         let trainerBtn = "";
         if (u.role === "owner" || u.role === "trainer") {
             trainerBtn = `
-                <button onclick="openTrainerModal()" title="Редактор расписания" class="p-2 rounded-lg bg-bgCard hover:bg-primary/10 text-primary border border-border hover:border-primary/30 transition-colors">
-                    📅 <span class="hidden lg:inline text-xs font-bold ml-1">+ Тренировка</span>
+                <button onclick="openTrainerModal()" title="Списание и расписание" class="p-2 rounded-lg bg-bgCard hover:bg-primary/10 text-primary border border-border hover:border-primary/30 transition-colors">
+                    🥋 <span class="hidden lg:inline text-xs font-bold ml-1">Тренер</span>
                 </button>
             `;
         }
@@ -483,6 +567,7 @@ function renderAuthHeader() {
                         ${u.name.charAt(0).toUpperCase()}
                     </div>
                     <span class="font-medium hidden sm:inline text-textMain">${u.name.split(' ')[0]}</span>
+                    <span class="text-xs font-bold text-primary">${(u.balance || 0).toFixed(2)} BYN</span>
                     <span class="text-[10px] px-2 py-0.5 rounded-full font-bold ${roleBadgeClass}">${roleTitle}</span>
                 </button>
             </div>
@@ -491,12 +576,11 @@ function renderAuthHeader() {
 }
 
 // --------------------------------------------------------------------------
-// Интерактивное расписание тренировок
+// Интерактивное расписание тренировок по дзюдо
 // --------------------------------------------------------------------------
 const DAYS = ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"];
 
 function renderSchedule() {
-    // Вкладки дней недели
     const tabsContainer = document.getElementById("schedule-days-tabs");
     if (tabsContainer) {
         tabsContainer.innerHTML = "";
@@ -514,7 +598,6 @@ function renderSchedule() {
         });
     }
 
-    // Кнопка быстрого добавления в расписание для тренера
     const actionContainer = document.getElementById("trainer-schedule-action");
     if (actionContainer) {
         if (store.currentUser && (store.currentUser.role === 'trainer' || store.currentUser.role === 'owner')) {
@@ -528,7 +611,6 @@ function renderSchedule() {
         }
     }
 
-    // Сетка тренировок на выбранный день
     const grid = document.getElementById("schedule-grid");
     if (!grid) return;
 
@@ -536,9 +618,9 @@ function renderSchedule() {
     if (filtered.length === 0) {
         grid.innerHTML = `
             <div class="col-span-full py-12 text-center text-textMuted border border-dashed border-border rounded-2xl bg-bgMain">
-                <span class="text-4xl block mb-2">🧘</span>
-                <p class="font-medium">На этот день тренировок пока не запланировано.</p>
-                ${store.currentUser && (store.currentUser.role === 'trainer' || store.currentUser.role === 'owner') ? '<button onclick="openTrainerModal()" class="mt-4 text-xs font-bold text-primary hover:underline">+ Добавить тренировку</button>' : ''}
+                <span class="text-4xl block mb-2">🥋</span>
+                <p class="font-medium">В этот день тренировок на татами пока не запланировано.</p>
+                ${store.currentUser && (store.currentUser.role === 'trainer' || store.currentUser.role === 'owner') ? '<button onclick="openTrainerModal()" class="mt-4 text-xs font-bold text-primary hover:underline">+ Добавить тренировку в расписание</button>' : ''}
             </div>
         `;
         return;
@@ -558,7 +640,7 @@ function renderSchedule() {
         } else if (isFull) {
             actionButton = `<button disabled class="w-full bg-border text-textMuted font-bold py-2.5 rounded-lg text-xs cursor-not-allowed">Мест нет</button>`;
         } else {
-            actionButton = `<button onclick="bookWorkout('${workout.id}')" class="w-full bg-primary hover:bg-primaryHover text-white font-bold py-2.5 rounded-lg text-xs transition-colors shadow-md shadow-primary/20">Записаться</button>`;
+            actionButton = `<button onclick="bookWorkout('${workout.id}')" class="w-full bg-primary hover:bg-primaryHover text-white font-bold py-2.5 rounded-lg text-xs transition-colors shadow-md shadow-primary/20">Записаться на татами</button>`;
         }
 
         let trainerTools = "";
@@ -589,7 +671,7 @@ function renderSchedule() {
                     <div class="mb-5">
                         <div class="flex justify-between text-xs text-textMuted mb-1.5">
                             <span>Свободно мест:</span>
-                            <span class="font-bold ${freeSpots <= 2 ? 'text-amber-500' : 'text-green-500'}">${freeSpots} из ${workout.capacity}</span>
+                            <span class="font-bold ${freeSpots <= 3 ? 'text-amber-500' : 'text-green-500'}">${freeSpots} из ${workout.capacity}</span>
                         </div>
                         <div class="w-full bg-bgCard h-1.5 rounded-full overflow-hidden">
                             <div class="bg-primary h-full transition-all" style="width: ${(workout.enrolled.length / workout.capacity) * 100}%"></div>
@@ -610,9 +692,6 @@ window.selectScheduleDay = function(day) {
     renderSchedule();
 };
 
-// --------------------------------------------------------------------------
-// Действия: Запись на тренировку и отмена
-// --------------------------------------------------------------------------
 window.bookWorkout = async function(workoutId) {
     if (!store.currentUser) {
         openAuthModal();
@@ -621,7 +700,7 @@ window.bookWorkout = async function(workoutId) {
 
     const res = store.enrollWorkout(workoutId);
     if (res.error === "FULL") {
-        alert("К сожалению, все места на эту тренировку уже заняты.");
+        alert("К сожалению, все места на татами на это занятие уже заняты.");
         return;
     }
 
@@ -629,32 +708,31 @@ window.bookWorkout = async function(workoutId) {
         renderSchedule();
         renderAuthHeader();
 
-        // Отправка вебхука в Google Таблицу
         try {
             await fetch(GOOGLE_SHEETS_WEBHOOK_URL, {
                 method: 'POST',
                 mode: 'no-cors',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    type: "BOOKING_WORKOUT",
+                    type: "JUDO_ENROLLMENT",
                     name: store.currentUser.name,
                     phone: store.currentUser.phone,
-                    email: store.currentUser.email,
                     workout: res.workout.title,
                     time: `${res.workout.day} в ${res.workout.time}`,
-                    createdAt: new Date().toLocaleString()
+                    hall: res.workout.hall,
+                    date: new Date().toLocaleString()
                 })
             });
         } catch (e) {
             console.error(e);
         }
 
-        showToast(`Вы успешно записались на «${res.workout.title}»!`);
+        showToast(`Вы успешно записаны на занятие «${res.workout.title}»!`);
     }
 };
 
 window.cancelBooking = function(workoutId) {
-    if (confirm("Вы действительно хотите отменить запись на это занятие?")) {
+    if (confirm("Отменить вашу запись на эту тренировку?")) {
         store.cancelEnrollment(workoutId);
         renderSchedule();
         renderCabinetModal();
@@ -663,7 +741,7 @@ window.cancelBooking = function(workoutId) {
 };
 
 window.deleteWorkout = function(workoutId) {
-    if (confirm("Удалить эту тренировку из общего расписания?")) {
+    if (confirm("Удалить эту тренировку из расписания клуба?")) {
         store.deleteWorkout(workoutId);
         renderSchedule();
         renderTrainerClassesList();
@@ -691,22 +769,19 @@ if (closeAuthBtn) closeAuthBtn.addEventListener("click", closeAuthModal);
 const authOverlay = document.getElementById("auth-overlay");
 if (authOverlay) authOverlay.addEventListener("click", closeAuthModal);
 
-// Быстрый вход для тестов в 1 клик
 window.quickLogin = function(role) {
     let target = store.users.find(u => u.role === role);
-    if (!target) {
-        target = store.users[0];
-    }
+    if (!target) target = store.users[0];
     store.currentUser = target;
     store.save();
     closeAuthModal();
     renderAuthHeader();
     renderSchedule();
-    showToast(`Вы вошли как ${target.name} (${target.role === 'owner' ? 'Владелец' : target.role === 'trainer' ? 'Тренер' : 'Участник'})`);
+    showToast(`Вы вошли как ${target.name} (${target.role === 'owner' ? 'Владелец' : 'Тренер'})`);
 };
 
 // --------------------------------------------------------------------------
-// 2. Личный кабинет Участника
+// 2. Личный кабинет Участника (Баланс BYN, QR-пропуск, История)
 // --------------------------------------------------------------------------
 const cabinetModal = document.getElementById("cabinet-modal");
 window.openCabinetModal = function() {
@@ -737,7 +812,7 @@ function renderCabinetModal() {
     const badge = document.getElementById("cabinet-user-badge");
     if (u.role === "owner") {
         badge.className = "text-xs px-2.5 py-0.5 rounded-full font-semibold bg-amber-500/20 text-amber-400 border border-amber-500/30";
-        badge.textContent = "Владелец";
+        badge.textContent = "Владелец клуба";
     } else if (u.role === "trainer") {
         badge.className = "text-xs px-2.5 py-0.5 rounded-full font-semibold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30";
         badge.textContent = "Тренер";
@@ -746,60 +821,128 @@ function renderCabinetModal() {
         badge.textContent = "Участник";
     }
 
-    document.getElementById("cabinet-pass-status").textContent = u.passStatus;
-    document.getElementById("cabinet-workouts-left").textContent = u.workoutsLeft;
-    document.getElementById("cabinet-role-text").textContent = u.role === 'owner' ? 'Владелец клуба' : u.role === 'trainer' ? 'Тренер команды' : 'Участник клуба';
+    // Баланс
+    const balanceVal = (u.balance || 0).toFixed(2);
+    document.getElementById("cabinet-balance-val").textContent = balanceVal;
 
-    // Записи пользователя
+    // Персональный QR-код для тренировок
+    const userCode = u.code || ("JD-" + u.id.slice(-4));
+    document.getElementById("cabinet-user-code").textContent = `ID: ${userCode}`;
+    const qrImg = document.getElementById("cabinet-qr-img");
+    if (qrImg) {
+        qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=GGPRIME-JUDO:${userCode}&color=0B0C10&bgcolor=FFFFFF`;
+    }
+
+    // Записи на татами
     const bookingsContainer = document.getElementById("cabinet-my-bookings");
     const myWorkouts = store.workouts.filter(w => w.enrolled.includes(u.id));
 
     if (myWorkouts.length === 0) {
         bookingsContainer.innerHTML = `
-            <div class="p-6 text-center text-textMuted bg-bgMain rounded-xl border border-border">
-                <p class="text-sm">У вас пока нет активных записей на тренировки.</p>
+            <div class="p-4 text-center text-textMuted bg-bgMain rounded-xl border border-border">
+                <p class="text-xs">У вас пока нет активных записей на татами.</p>
             </div>
         `;
     } else {
         bookingsContainer.innerHTML = "";
         myWorkouts.forEach(w => {
             bookingsContainer.innerHTML += `
-                <div class="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-bgMain rounded-xl border border-border gap-3">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between p-3.5 bg-bgMain rounded-xl border border-border gap-2">
                     <div>
                         <div class="flex items-center gap-2 mb-1">
                             <span class="text-xs font-bold text-primary">${w.day} в ${w.time}</span>
                             <span class="text-xs text-textMuted">• ${w.hall}</span>
                         </div>
-                        <h5 class="font-bold text-textMain">${w.title}</h5>
+                        <h5 class="font-bold text-sm text-textMain">${w.title}</h5>
                         <p class="text-xs text-textMuted">Тренер: ${w.trainerName}</p>
                     </div>
-                    <button onclick="cancelBooking('${w.id}')" class="text-xs bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/20 px-3 py-2 rounded-lg font-semibold transition-colors self-start sm:self-auto">
+                    <button onclick="cancelBooking('${w.id}')" class="text-xs bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/20 px-3 py-1.5 rounded-lg font-semibold transition-colors self-start sm:self-auto">
                         Отменить запись
                     </button>
                 </div>
             `;
         });
     }
+
+    // История транзакций
+    const transContainer = document.getElementById("cabinet-transactions");
+    if (transContainer) {
+        const trans = u.transactions || [];
+        if (trans.length === 0) {
+            transContainer.innerHTML = `<p class="text-xs text-textMuted">Операций пока не совершалось.</p>`;
+        } else {
+            transContainer.innerHTML = "";
+            trans.forEach(t => {
+                const isTopUp = t.type === 'topup';
+                const sign = isTopUp ? "+" : "-";
+                const color = isTopUp ? "text-green-500" : "text-primary";
+
+                transContainer.innerHTML += `
+                    <div class="flex justify-between items-center text-xs p-2.5 bg-bgMain rounded-lg border border-border/70">
+                        <div>
+                            <span class="font-semibold text-textMain block">${t.title}</span>
+                            <span class="text-[10px] text-textMuted">${t.date}</span>
+                        </div>
+                        <span class="font-bold text-sm ${color}">${sign}${t.amount} BYN</span>
+                    </div>
+                `;
+            });
+        }
+    }
 }
+
+// Пополнение счета
+const topUpModal = document.getElementById("topup-modal");
+window.openTopUpModal = function() {
+    if (!topUpModal) return;
+    topUpModal.classList.remove("hidden");
+};
+window.closeTopUpModal = function() {
+    if (!topUpModal) return;
+    topUpModal.classList.add("hidden");
+};
+
+const topUpOverlay = document.getElementById("topup-overlay");
+if (topUpOverlay) topUpOverlay.addEventListener("click", window.closeTopUpModal);
+
+window.confirmTopUp = function(amount) {
+    store.topUp(amount);
+    closeTopUpModal();
+    renderCabinetModal();
+    renderAuthHeader();
+    showToast(`Баланс пополнен на +${amount} BYN!`);
+};
+
+window.submitCustomTopUp = function() {
+    const input = document.getElementById("topup-custom-amount");
+    const amount = parseFloat(input.value);
+    if (isNaN(amount) || amount <= 0) {
+        alert("Пожалуйста, введите корректную сумму пополнения в BYN.");
+        return;
+    }
+    window.confirmTopUp(amount);
+    input.value = "";
+};
 
 window.logout = function() {
     store.logout();
     closeCabinetModal();
     renderAuthHeader();
     renderSchedule();
-    showToast("Вы успешно вышли из аккаунта.");
+    showToast("Вы вышли из аккаунта.");
 };
 
 // --------------------------------------------------------------------------
-// 3. Панель Тренера (Составление расписания)
+// 3. Панель Тренера (Списание по QR-коду и управление расписанием дзюдо)
 // --------------------------------------------------------------------------
 const trainerModal = document.getElementById("trainer-modal");
 window.openTrainerModal = function() {
     if (!trainerModal) return;
     if (!store.currentUser || (store.currentUser.role !== 'trainer' && store.currentUser.role !== 'owner')) {
-        alert("Доступ открыт только тренерам и владельцу клуба.");
+        alert("Доступ открыт только тренерам клуба дзюдо и владельцу.");
         return;
     }
+    renderTrainerUsersSelect();
     renderTrainerClassesList();
     trainerModal.classList.remove("hidden");
     document.body.style.overflow = "hidden";
@@ -815,6 +958,37 @@ if (closeTrainerBtn) closeTrainerBtn.addEventListener("click", closeTrainerModal
 const trainerOverlay = document.getElementById("trainer-overlay");
 if (trainerOverlay) trainerOverlay.addEventListener("click", closeTrainerModal);
 
+function renderTrainerUsersSelect() {
+    const sel = document.getElementById("trainer-charge-user-select");
+    if (!sel) return;
+
+    sel.innerHTML = '<option value="">-- Выберите участника для списания по QR / ID --</option>';
+    store.users.forEach(u => {
+        sel.innerHTML += `
+            <option value="${u.id}">${u.name} (Код: ${u.code}) — Баланс: ${(u.balance || 0).toFixed(2)} BYN</option>
+        `;
+    });
+}
+
+window.trainerChargeUser = function() {
+    const sel = document.getElementById("trainer-charge-user-select");
+    const userId = sel.value;
+    if (!userId) {
+        alert("Пожалуйста, выберите участника.");
+        return;
+    }
+
+    const res = store.chargeClientByTrainer(userId, WORKOUT_PRICE_BYN);
+    if (res.error) {
+        alert(res.error);
+        return;
+    }
+
+    renderTrainerUsersSelect();
+    renderAuthHeader();
+    showToast(`✓ Списано 15 BYN с баланса ${res.user.name}. Вход на татами подтвержден!`);
+};
+
 function renderTrainerClassesList() {
     const list = document.getElementById("trainer-classes-list");
     if (!list) return;
@@ -827,7 +1001,7 @@ function renderTrainerClassesList() {
                     <span class="font-bold text-primary mr-2">${w.day} ${w.time}</span>
                     <strong class="text-textMain">${w.title}</strong>
                     <div class="text-xs text-textMuted mt-1">
-                        Зал: ${w.hall} • Тренер: ${w.trainerName} • Записано: <strong class="text-textMain">${w.enrolled.length} из ${w.capacity}</strong>
+                        ${w.hall} • Тренер: ${w.trainerName} • Записано: <strong class="text-textMain">${w.enrolled.length} из ${w.capacity}</strong>
                     </div>
                 </div>
                 <button onclick="deleteWorkout('${w.id}')" class="text-xs bg-red-500/10 hover:bg-red-500 text-red-400 hover:text-white px-3 py-1.5 rounded-lg border border-red-500/20 transition-colors self-start sm:self-auto">
@@ -867,7 +1041,6 @@ function renderAdminUsersTable() {
     const tableBody = document.getElementById("admin-users-table");
     if (!tableBody) return;
 
-    // Метрики
     const trainersCount = store.users.filter(u => u.role === 'trainer').length;
     document.getElementById("admin-stat-members").textContent = store.users.length;
     document.getElementById("admin-stat-trainers").textContent = trainersCount;
@@ -882,7 +1055,7 @@ function renderAdminUsersTable() {
             roleBadge = `<span class="px-2.5 py-1 rounded-full text-xs font-bold bg-amber-500/20 text-amber-400 border border-amber-500/30">👑 Владелец</span>`;
             actionBtn = `<span class="text-xs text-textMuted italic">Главный администратор</span>`;
         } else if (u.role === "trainer") {
-            roleBadge = `<span class="px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">🥊 Тренер</span>`;
+            roleBadge = `<span class="px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">🥋 Тренер</span>`;
             actionBtn = `
                 <button onclick="toggleTrainerRole('${u.id}', 'client')" class="bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/20 text-xs px-3 py-1.5 rounded-lg font-medium transition-colors">
                     Снять статус тренера
@@ -892,7 +1065,7 @@ function renderAdminUsersTable() {
             roleBadge = `<span class="px-2.5 py-1 rounded-full text-xs font-semibold bg-bgCard text-textMuted border border-border">Участник</span>`;
             actionBtn = `
                 <button onclick="toggleTrainerRole('${u.id}', 'trainer')" class="bg-primary hover:bg-primaryHover text-white text-xs px-3.5 py-1.5 rounded-lg font-bold transition-colors shadow-sm shadow-primary/20 flex items-center gap-1.5 ml-auto">
-                    <span>👑</span> Выдать статус «Тренер»
+                    <span>🥋</span> Назначить тренером
                 </button>
             `;
         }
@@ -903,12 +1076,16 @@ function renderAdminUsersTable() {
                     <div class="w-8 h-8 rounded-full bg-primary/20 text-primary flex items-center justify-center font-bold text-xs">
                         ${u.name.charAt(0).toUpperCase()}
                     </div>
-                    <span>${u.name}</span>
+                    <div>
+                        <div>${u.name}</div>
+                        <div class="text-[11px] text-textMuted font-mono">Код: ${u.code}</div>
+                    </div>
                 </td>
                 <td class="p-4 text-textMuted text-xs">
-                    <div>${u.email}</div>
                     <div>${u.phone || '-'}</div>
+                    <div class="text-[11px]">${u.email}</div>
                 </td>
+                <td class="p-4 font-bold text-sm text-textMain">${(u.balance || 0).toFixed(2)} BYN</td>
                 <td class="p-4">${roleBadge}</td>
                 <td class="p-4 text-right">${actionBtn}</td>
             </tr>
@@ -922,14 +1099,13 @@ window.toggleTrainerRole = function(userId, newRole) {
     renderAuthHeader();
     renderSchedule();
     const roleName = newRole === 'trainer' ? 'Тренер' : 'Участник';
-    showToast(`Статус пользователя успешно изменен на «${roleName}»!`);
+    showToast(`Пользователю выдан статус «${roleName}»!`);
 };
 
 // --------------------------------------------------------------------------
 // Обработчики форм и переключателей
 // --------------------------------------------------------------------------
 function setupEventHandlers() {
-    // Табы Авторизации: Вход / Регистрация
     const tabLogin = document.getElementById("tab-login");
     const tabRegister = document.getElementById("tab-register");
     const loginForm = document.getElementById("login-form");
@@ -951,7 +1127,6 @@ function setupEventHandlers() {
         });
     }
 
-    // Отправка формы Входа
     if (loginForm) {
         loginForm.addEventListener("submit", (e) => {
             e.preventDefault();
@@ -967,7 +1142,7 @@ function setupEventHandlers() {
                 loginForm.reset();
                 renderAuthHeader();
                 renderSchedule();
-                showToast(`С возвращением, ${store.currentUser.name}!`);
+                showToast(`С возвращением в додзё, ${store.currentUser.name}!`);
             } catch (err) {
                 errEl.textContent = err.message;
                 errEl.classList.remove("hidden");
@@ -975,7 +1150,6 @@ function setupEventHandlers() {
         });
     }
 
-    // Отправка формы Регистрации
     if (registerForm) {
         registerForm.addEventListener("submit", (e) => {
             e.preventDefault();
@@ -993,7 +1167,7 @@ function setupEventHandlers() {
                 registerForm.reset();
                 renderAuthHeader();
                 renderSchedule();
-                showToast(`Аккаунт успешно создан! Добро пожаловать, ${name}!`);
+                showToast(`Добро пожаловать в клуб, ${name}! Вам начислен бонус 15 BYN на первую тренировку.`);
             } catch (err) {
                 errEl.textContent = err.message;
                 errEl.classList.remove("hidden");
@@ -1001,7 +1175,6 @@ function setupEventHandlers() {
         });
     }
 
-    // Добавление тренировки Тренером
     const addWorkoutForm = document.getElementById("add-workout-form");
     if (addWorkoutForm) {
         addWorkoutForm.addEventListener("submit", (e) => {
@@ -1009,19 +1182,18 @@ function setupEventHandlers() {
             const title = document.getElementById("workout-title").value;
             const day = document.getElementById("workout-day").value;
             const time = document.getElementById("workout-time").value;
-            const duration = parseInt(document.getElementById("workout-duration").value) || 60;
+            const duration = parseInt(document.getElementById("workout-duration").value) || 90;
             const hall = document.getElementById("workout-hall").value;
-            const capacity = parseInt(document.getElementById("workout-capacity").value) || 10;
+            const capacity = parseInt(document.getElementById("workout-capacity").value) || 16;
 
             store.addWorkout({ title, day, time, duration, hall, capacity });
             addWorkoutForm.reset();
             renderTrainerClassesList();
             renderSchedule();
-            showToast(`Тренировка «${title}» добавлена на ${day}!`);
+            showToast(`Тренировка по дзюдо добавлена на ${day}!`);
         });
     }
 
-    // Быстрая заявка гостя в Google Таблицу
     const bookingForm = document.getElementById("booking-form");
     if (bookingForm) {
         bookingForm.addEventListener("submit", async (e) => {
@@ -1040,13 +1212,13 @@ function setupEventHandlers() {
                     method: 'POST',
                     mode: 'no-cors',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ name, phone, type: "GUEST_LEAD", date: new Date().toISOString() })
+                    body: JSON.stringify({ name, phone, type: "JUDO_LEAD_BY", date: new Date().toISOString() })
                 });
             } catch (error) {
                 console.error("Webhook error:", error);
             }
 
-            submitBtn.textContent = "✓ Заявка отправлена!";
+            submitBtn.textContent = "✓ Вы записаны!";
             submitBtn.classList.add("bg-green-600");
 
             setTimeout(() => {
@@ -1059,7 +1231,6 @@ function setupEventHandlers() {
         });
     }
 
-    // Мобильное меню
     const menuBtn = document.getElementById("mobile-menu-btn");
     const navMobile = document.getElementById("ui-nav-mobile");
     if (menuBtn && navMobile) {
@@ -1071,7 +1242,6 @@ function setupEventHandlers() {
         });
     }
 
-    // Модальное окно гостевой заявки
     const modal = document.getElementById("booking-modal");
     window.openModal = function() {
         if (!modal) return;
@@ -1089,20 +1259,14 @@ function setupEventHandlers() {
     if (modalOverlay) modalOverlay.addEventListener("click", window.closeModal);
 }
 
-// --------------------------------------------------------------------------
-// Всплывающие уведомления (Toast)
-// --------------------------------------------------------------------------
 function showToast(message) {
     const toast = document.createElement("div");
     toast.className = "fixed bottom-6 right-6 bg-primary text-white text-sm font-semibold px-5 py-3 rounded-xl shadow-2xl z-[300] animate-bounce flex items-center gap-2";
-    toast.innerHTML = `<span>✓</span> <span>${message}</span>`;
+    toast.innerHTML = `<span>🥋</span> <span>${message}</span>`;
     document.body.appendChild(toast);
-    setTimeout(() => toast.remove(), 3500);
+    setTimeout(() => toast.remove(), 4000);
 }
 
-// --------------------------------------------------------------------------
-// Тема (Dark / Light) и анимации при скролле
-// --------------------------------------------------------------------------
 function setupThemeAndAnimations() {
     const themeToggle = document.getElementById("theme-toggle");
     const htmlTag = document.documentElement;
