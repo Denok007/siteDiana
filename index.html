@@ -6,7 +6,7 @@
     <meta name="theme-color" content="#E63946">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>GGPRIME</title>
+    <title>GGPRIME | Спортивная арена</title>
 
     <!-- PWA Manifest -->
     <link rel="manifest" href="data:application/manifest+json;charset=utf-8,%7B%22name%22%3A%22GGPRIME%22%2C%22short_name%22%3A%22GGPRIME%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%230B0C10%22%2C%22theme_color%22%3A%22%23E63946%22%7D">
@@ -15,12 +15,11 @@
     <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Настройка Tailwind для связи с CSS переменными -->
     <script>
         tailwind.config = {
             darkMode: ['class', '[data-theme="dark"]'],
@@ -49,15 +48,20 @@
 </head>
 <body class="font-sans antialiased overflow-x-hidden">
 
-    <!-- Шапка -->
+    <!-- Шапка сайта -->
     <header class="fixed w-full top-0 z-50 bg-bgMain/90 backdrop-blur-md border-b border-border transition-colors duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <a href="#" class="font-logo text-3xl font-bold text-primary tracking-tight" id="ui-logo"></a>
+            <a href="#" class="font-logo text-3xl font-bold text-primary tracking-tight" id="ui-logo">GGPRIME</a>
             
-            <div class="flex items-center gap-6">
+            <div class="flex items-center gap-4 sm:gap-6">
                 <!-- Desktop Nav -->
                 <nav class="hidden md:flex gap-6 text-sm font-medium" id="ui-nav-desktop"></nav>
                 
+                <!-- Блок авторизации / Профиля -->
+                <div id="ui-auth-header-wrapper" class="flex items-center gap-2">
+                    <!-- Заполняется динамически через JS -->
+                </div>
+
                 <!-- Theme Toggle -->
                 <button id="theme-toggle" class="p-2 rounded-full hover:bg-bgCard transition-colors" aria-label="Toggle Theme">
                     <svg id="theme-icon-moon" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
@@ -65,7 +69,7 @@
                 </button>
 
                 <!-- Mobile Menu Button -->
-                <button id="mobile-menu-btn" class="md:hidden p-2 text-textMain">
+                <button id="mobile-menu-btn" class="md:hidden p-2 text-textMain" aria-label="Меню">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
                 </button>
             </div>
@@ -74,7 +78,242 @@
         <nav id="ui-nav-mobile" class="hidden md:hidden bg-bgCard border-b border-border px-4 py-4 flex flex-col gap-4"></nav>
     </header>
 
-    <!-- Модальное окно заявки -->
+    <!-- 1. Модальное окно Входа / Регистрации -->
+    <div id="auth-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center p-4">
+        <div class="modal-overlay absolute inset-0" id="auth-overlay"></div>
+        <div class="relative bg-bgCard border border-border rounded-2xl w-full max-w-md p-6 sm:p-8 shadow-2xl z-10">
+            <button id="close-auth-modal" class="absolute top-4 right-4 text-textMuted hover:text-primary transition-colors">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            
+            <!-- Табы: Вход / Регистрация -->
+            <div class="flex border-b border-border mb-6">
+                <button id="tab-login" class="flex-1 pb-3 font-bold text-center border-b-2 border-primary text-primary transition-colors">Вход</button>
+                <button id="tab-register" class="flex-1 pb-3 font-semibold text-center text-textMuted hover:text-textMain border-b-2 border-transparent transition-colors">Регистрация</button>
+            </div>
+
+            <!-- Форма входа -->
+            <form id="login-form" class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-textMuted mb-1">Email</label>
+                    <input type="email" id="login-email" required class="w-full bg-bgMain border border-border rounded-lg px-4 py-3 text-textMain focus:outline-none focus:border-primary transition-colors" placeholder="name@example.com">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-textMuted mb-1">Пароль</label>
+                    <input type="password" id="login-password" required class="w-full bg-bgMain border border-border rounded-lg px-4 py-3 text-textMain focus:outline-none focus:border-primary transition-colors" placeholder="••••••••">
+                </div>
+                <div id="login-error" class="text-xs text-red-500 hidden"></div>
+                <button type="submit" class="w-full bg-primary hover:bg-primaryHover text-white font-bold py-3 rounded-lg transition-colors">Войти</button>
+            </form>
+
+            <!-- Форма регистрации -->
+            <form id="register-form" class="space-y-4 hidden">
+                <div>
+                    <label class="block text-sm font-medium text-textMuted mb-1">Ваше имя</label>
+                    <input type="text" id="reg-name" required class="w-full bg-bgMain border border-border rounded-lg px-4 py-3 text-textMain focus:outline-none focus:border-primary transition-colors" placeholder="Иван Иванов">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-textMuted mb-1">Телефон</label>
+                    <input type="tel" id="reg-phone" required class="w-full bg-bgMain border border-border rounded-lg px-4 py-3 text-textMain focus:outline-none focus:border-primary transition-colors" placeholder="+7 (999) 000-00-00">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-textMuted mb-1">Email</label>
+                    <input type="email" id="reg-email" required class="w-full bg-bgMain border border-border rounded-lg px-4 py-3 text-textMain focus:outline-none focus:border-primary transition-colors" placeholder="name@example.com">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-textMuted mb-1">Пароль</label>
+                    <input type="password" id="reg-password" required minlength="4" class="w-full bg-bgMain border border-border rounded-lg px-4 py-3 text-textMain focus:outline-none focus:border-primary transition-colors" placeholder="Минимум 4 символа">
+                </div>
+                <div id="register-error" class="text-xs text-red-500 hidden"></div>
+                <button type="submit" class="w-full bg-primary hover:bg-primaryHover text-white font-bold py-3 rounded-lg transition-colors">Создать аккаунт</button>
+            </form>
+
+            <!-- Быстрый тестовый вход (Демо-доступ) -->
+            <div class="mt-6 pt-5 border-t border-border text-center">
+                <p class="text-xs text-textMuted mb-3">Быстрый тестовый вход в 1 клик:</p>
+                <div class="grid grid-cols-2 gap-2 text-xs">
+                    <button type="button" onclick="quickLogin('owner')" class="py-2 px-3 bg-bgMain hover:bg-primary/10 border border-primary/40 rounded-lg text-primary font-semibold transition-colors">👑 Владелец</button>
+                    <button type="button" onclick="quickLogin('trainer')" class="py-2 px-3 bg-bgMain hover:bg-primary/10 border border-border rounded-lg text-textMain font-semibold transition-colors">🥊 Тренер</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. Модальное окно Личного Кабинета Участника -->
+    <div id="cabinet-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center p-4">
+        <div class="modal-overlay absolute inset-0" id="cabinet-overlay"></div>
+        <div class="relative bg-bgCard border border-border rounded-2xl w-full max-w-2xl p-6 sm:p-8 shadow-2xl z-10 max-h-[90vh] overflow-y-auto">
+            <button id="close-cabinet-modal" class="absolute top-4 right-4 text-textMuted hover:text-primary transition-colors">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+
+            <div class="flex items-center gap-4 mb-6">
+                <div class="w-16 h-16 rounded-full bg-primary/20 text-primary border-2 border-primary flex items-center justify-center text-2xl font-bold font-logo" id="cabinet-avatar"></div>
+                <div>
+                    <h3 class="text-2xl font-bold text-textMain flex items-center gap-2">
+                        <span id="cabinet-user-name"></span>
+                        <span id="cabinet-user-badge" class="text-xs px-2.5 py-0.5 rounded-full font-semibold uppercase"></span>
+                    </h3>
+                    <p class="text-textMuted text-sm" id="cabinet-user-email"></p>
+                </div>
+            </div>
+
+            <!-- Статистика / Абонемент -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+                <div class="bg-bgMain p-4 rounded-xl border border-border text-center">
+                    <span class="text-xs text-textMuted block mb-1">Статус абонемента</span>
+                    <span class="text-lg font-bold text-green-500" id="cabinet-pass-status">Активен (Pro)</span>
+                </div>
+                <div class="bg-bgMain p-4 rounded-xl border border-border text-center">
+                    <span class="text-xs text-textMuted block mb-1">Осталось тренировок</span>
+                    <span class="text-2xl font-bold text-primary" id="cabinet-workouts-left">8</span>
+                </div>
+                <div class="bg-bgMain p-4 rounded-xl border border-border text-center">
+                    <span class="text-xs text-textMuted block mb-1">Мой статус в клубе</span>
+                    <span class="text-lg font-bold text-textMain" id="cabinet-role-text">Участник</span>
+                </div>
+            </div>
+
+            <!-- Мои активные записи на тренировки -->
+            <div class="mb-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h4 class="text-lg font-bold text-textMain">Мои записи на тренировки</h4>
+                    <a href="#schedule" onclick="closeCabinetModal()" class="text-xs text-primary hover:underline">+ Записаться на занятие</a>
+                </div>
+                <div id="cabinet-my-bookings" class="space-y-3">
+                    <!-- Заполняется динамически -->
+                </div>
+            </div>
+
+            <button onclick="logout()" class="w-full bg-transparent border border-red-500/40 text-red-400 hover:bg-red-500/10 font-medium py-2.5 rounded-lg transition-colors text-sm">Выйти из аккаунта</button>
+        </div>
+    </div>
+
+    <!-- 3. Панель Тренера (Составление и редактирование расписания) -->
+    <div id="trainer-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center p-4">
+        <div class="modal-overlay absolute inset-0" id="trainer-overlay"></div>
+        <div class="relative bg-bgCard border border-border rounded-2xl w-full max-w-3xl p-6 sm:p-8 shadow-2xl z-10 max-h-[90vh] overflow-y-auto">
+            <button id="close-trainer-modal" class="absolute top-4 right-4 text-textMuted hover:text-primary transition-colors">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+
+            <div class="mb-6">
+                <span class="text-xs font-bold text-primary uppercase tracking-wider">Рабочее место тренера</span>
+                <h3 class="text-2xl font-bold text-textMain">Составление расписания тренировок</h3>
+                <p class="text-sm text-textMuted">Добавляйте тренировки, указывайте время, лимит мест и управляйте группами.</p>
+            </div>
+
+            <!-- Форма добавления тренировки -->
+            <form id="add-workout-form" class="bg-bgMain p-5 rounded-xl border border-border mb-8 space-y-4">
+                <h4 class="font-bold text-sm text-textMain uppercase tracking-wide flex items-center gap-2">
+                    <span>➕</span> Добавить новую тренировку в расписание
+                </h4>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                    <div>
+                        <label class="block text-xs font-medium text-textMuted mb-1">Направление</label>
+                        <input type="text" id="workout-title" required class="w-full bg-bgCard border border-border rounded-lg px-3 py-2 text-sm text-textMain focus:outline-none focus:border-primary" placeholder="Напр. Бокс: спарринг">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-textMuted mb-1">День недели</label>
+                        <select id="workout-day" class="w-full bg-bgCard border border-border rounded-lg px-3 py-2 text-sm text-textMain focus:outline-none focus:border-primary">
+                            <option value="Пн">Понедельник (Пн)</option>
+                            <option value="Вт">Вторник (Вт)</option>
+                            <option value="Ср">Среда (Ср)</option>
+                            <option value="Чт">Четверг (Чт)</option>
+                            <option value="Пт">Пятница (Пт)</option>
+                            <option value="Сб">Суббота (Сб)</option>
+                            <option value="Вс">Воскресенье (Вс)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-textMuted mb-1">Время начала</label>
+                        <input type="time" id="workout-time" value="18:00" required class="w-full bg-bgCard border border-border rounded-lg px-3 py-2 text-sm text-textMain focus:outline-none focus:border-primary">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-textMuted mb-1">Длительность (мин)</label>
+                        <input type="number" id="workout-duration" value="60" min="30" max="180" class="w-full bg-bgCard border border-border rounded-lg px-3 py-2 text-sm text-textMain focus:outline-none focus:border-primary">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-textMuted mb-1">Зал / Пространство</label>
+                        <select id="workout-hall" class="w-full bg-bgCard border border-border rounded-lg px-3 py-2 text-sm text-textMain focus:outline-none focus:border-primary">
+                            <option value="Боксерский Ринг">Боксерский Ринг</option>
+                            <option value="CrossFit Зона">CrossFit Зона</option>
+                            <option value="Студия Йоги">Студия Йоги & Пилатеса</option>
+                            <option value="Октагон MMA">Октагон MMA</option>
+                            <option value="Тренажерный Зал">Тренажерный Зал</option>
+                            <option value="Dance Класс">Dance Класс</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-textMuted mb-1">Максимум участников</label>
+                        <input type="number" id="workout-capacity" value="10" min="1" max="50" required class="w-full bg-bgCard border border-border rounded-lg px-3 py-2 text-sm text-textMain focus:outline-none focus:border-primary">
+                    </div>
+                </div>
+                <div class="flex justify-end pt-2">
+                    <button type="submit" class="bg-primary hover:bg-primaryHover text-white text-sm font-bold px-6 py-2.5 rounded-lg transition-colors">Сохранить тренировку</button>
+                </div>
+            </form>
+
+            <!-- Список всех тренировок в расписании -->
+            <div>
+                <h4 class="font-bold text-base text-textMain mb-4">Текущие тренировки в системе:</h4>
+                <div id="trainer-classes-list" class="space-y-3">
+                    <!-- Заполняется динамически -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. Панель Владельца (Управление ролями и назначение тренеров) -->
+    <div id="admin-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center p-4">
+        <div class="modal-overlay absolute inset-0" id="admin-overlay"></div>
+        <div class="relative bg-bgCard border border-border rounded-2xl w-full max-w-4xl p-6 sm:p-8 shadow-2xl z-10 max-h-[90vh] overflow-y-auto">
+            <button id="close-admin-modal" class="absolute top-4 right-4 text-textMuted hover:text-primary transition-colors">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+
+            <div class="mb-6">
+                <span class="text-xs font-bold text-amber-500 uppercase tracking-wider">Панель управления клубом</span>
+                <h3 class="text-2xl font-bold text-textMain">Управление участниками и правами доступа</h3>
+                <p class="text-sm text-textMuted">Здесь владелец клуба может назначить любого участника Тренером, чтобы открыть ему доступ к составлению расписания.</p>
+            </div>
+
+            <!-- Метрики клуба -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+                <div class="bg-bgMain p-4 rounded-xl border border-border">
+                    <span class="text-xs text-textMuted block mb-1">Всего участников</span>
+                    <span class="text-2xl font-bold text-textMain" id="admin-stat-members">0</span>
+                </div>
+                <div class="bg-bgMain p-4 rounded-xl border border-border">
+                    <span class="text-xs text-textMuted block mb-1">Тренеров в штате</span>
+                    <span class="text-2xl font-bold text-primary" id="admin-stat-trainers">0</span>
+                </div>
+                <div class="bg-bgMain p-4 rounded-xl border border-border">
+                    <span class="text-xs text-textMuted block mb-1">Запланировано тренировок</span>
+                    <span class="text-2xl font-bold text-green-500" id="admin-stat-classes">0</span>
+                </div>
+            </div>
+
+            <!-- Таблица пользователей -->
+            <div class="overflow-x-auto border border-border rounded-xl">
+                <table class="w-full text-left text-sm">
+                    <thead class="bg-bgMain text-textMuted text-xs uppercase border-b border-border">
+                        <tr>
+                            <th class="p-4">Участник</th>
+                            <th class="p-4">Контакты</th>
+                            <th class="p-4">Текущая роль</th>
+                            <th class="p-4 text-right">Назначение прав</th>
+                        </tr>
+                    </thead>
+                    <tbody id="admin-users-table" class="divide-y divide-border">
+                        <!-- Заполняется динамически -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно быстрой заявки (гостевой доступ) -->
     <div id="booking-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center p-4">
         <div class="modal-overlay absolute inset-0" id="modal-overlay"></div>
         <div class="relative bg-bgCard border border-border rounded-2xl w-full max-w-md p-6 sm:p-8 shadow-2xl transform transition-all">
@@ -101,38 +340,70 @@
         <section id="home" class="relative min-h-[85vh] flex items-center justify-center text-center px-4 overflow-hidden">
             <div class="absolute inset-0 bg-gradient-to-b from-primary/5 to-bgMain z-0"></div>
             <div class="relative z-10 max-w-3xl reveal">
+                <span class="inline-block py-1 px-4 mb-4 text-xs font-bold uppercase tracking-wider rounded-full bg-primary/10 text-primary border border-primary/20">Премиальное спортивное пространство</span>
                 <h1 id="ui-hero-title" class="text-5xl md:text-7xl font-bold mb-6 uppercase tracking-tight"></h1>
                 <p id="ui-hero-subtitle" class="text-lg md:text-xl text-textMuted mb-10 max-w-2xl mx-auto"></p>
-                <button onclick="openModal()" id="ui-hero-btn" class="bg-primary hover:bg-primaryHover text-white px-8 py-4 rounded-lg font-bold text-lg uppercase tracking-wide transition-transform hover:-translate-y-1 shadow-lg shadow-primary/30"></button>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                    <a href="#schedule" class="w-full sm:w-auto bg-primary hover:bg-primaryHover text-white px-8 py-4 rounded-lg font-bold text-lg uppercase tracking-wide transition-transform hover:-translate-y-1 shadow-lg shadow-primary/30">Смотреть расписание</a>
+                    <button onclick="openModal()" id="ui-hero-btn" class="w-full sm:w-auto bg-transparent border-2 border-primary text-primary hover:bg-primary hover:text-white px-8 py-4 rounded-lg font-bold text-lg uppercase tracking-wide transition-colors"></button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Интерактивное Расписание тренировок -->
+        <section id="schedule" class="py-20 bg-bgCard border-b border-border">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 reveal">
+                    <div>
+                        <span class="text-xs font-bold text-primary uppercase tracking-wider">Календарь занятий</span>
+                        <h2 class="text-3xl md:text-4xl font-bold uppercase text-textMain mt-1">Расписание тренировок</h2>
+                        <p class="text-textMuted text-sm mt-2">Выберите день и запишитесь на занятие в один клик.</p>
+                    </div>
+                    <!-- Кнопка тренера для быстрого перехода к расписанию -->
+                    <div id="trainer-schedule-action" class="mt-4 md:mt-0"></div>
+                </div>
+
+                <!-- Вкладки дней недели -->
+                <div class="flex gap-2 overflow-x-auto pb-4 mb-8 scrollbar-none" id="schedule-days-tabs">
+                    <!-- Заполняется динамически -->
+                </div>
+
+                <!-- Сетка занятий выбранного дня -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="schedule-grid">
+                    <!-- Заполняется динамически -->
+                </div>
             </div>
         </section>
 
         <!-- Trainers Section -->
-        <section id="trainers" class="py-20 bg-bgCard border-b border-border">
+        <section id="trainers" class="py-20 bg-bgMain border-b border-border">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center mb-16 reveal">
-                    <h2 class="text-3xl md:text-4xl font-bold uppercase text-textMain">Наша Команда</h2>
+                    <span class="text-xs font-bold text-primary uppercase tracking-wider">Профессионалы своего дела</span>
+                    <h2 class="text-3xl md:text-4xl font-bold uppercase text-textMain mt-1">Наша Команда</h2>
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8" id="ui-trainers-grid"></div>
             </div>
         </section>
 
         <!-- FAQ Section -->
-        <section id="faq" class="py-20 bg-bgMain border-b border-border">
+        <section id="faq" class="py-20 bg-bgCard border-b border-border">
             <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center mb-12 reveal">
-                    <h2 class="text-3xl md:text-4xl font-bold uppercase text-textMain">Частые вопросы</h2>
+                    <span class="text-xs font-bold text-primary uppercase tracking-wider">Ответы на вопросы</span>
+                    <h2 class="text-3xl md:text-4xl font-bold uppercase text-textMain mt-1">Частые вопросы</h2>
                 </div>
                 <div class="space-y-4" id="ui-faq-list"></div>
             </div>
         </section>
 
         <!-- Contact Section -->
-        <section id="contact" class="py-20 bg-bgCard">
+        <section id="contact" class="py-20 bg-bgMain">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 reveal">
                     <div>
-                        <h2 class="text-3xl md:text-4xl font-bold uppercase text-textMain mb-8">Контакты</h2>
+                        <span class="text-xs font-bold text-primary uppercase tracking-wider">Ждем вас в клубе</span>
+                        <h2 class="text-3xl md:text-4xl font-bold uppercase text-textMain mt-1 mb-8">Контакты</h2>
                         <div class="space-y-6 text-lg" id="ui-contact-info"></div>
                         <button onclick="openModal()" class="mt-8 bg-transparent border-2 border-primary text-primary hover:bg-primary hover:text-white px-8 py-3 rounded-lg font-bold uppercase transition-colors">Связаться с нами</button>
                     </div>
@@ -145,7 +416,7 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-bgMain border-t border-border py-12">
+    <footer class="bg-bgCard border-t border-border py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row justify-between items-center gap-6">
                 <div class="font-logo text-2xl text-primary font-bold" id="ui-footer-logo"></div>

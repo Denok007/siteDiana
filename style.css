@@ -45,6 +45,20 @@ body {
     }
 }
 
+/* Плавный скролл */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Утилита скрытия полосы прокрутки */
+.scrollbar-none {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+.scrollbar-none::-webkit-scrollbar {
+    display: none;
+}
+
 /* Scroll Reveal Анимации */
 .reveal {
     opacity: 0;
